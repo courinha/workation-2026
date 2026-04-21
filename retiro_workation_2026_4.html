@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Retiro & Workation — Maio 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a18;
+  --muted: #6b6b65;
+  --faint: #e8e6e0;
+  --bg: #f7f5f0;
+  --white: #ffffff;
+  --p1: #2d4a6e;
+  --p1-light: #e8eef5;
+  --p2: #2d5a3d;
+  --p2-light: #e8f2eb;
+  --accent: #c4762a;
+  --accent-light: #faf0e6;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.6;
+}
+.page { max-width: 860px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+
+/* Header */
+.header { margin-bottom: 2rem; border-bottom: 1px solid var(--faint); padding-bottom: 3rem; }
+.header-eyebrow { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.25rem; }
+.header-title { font-family: 'Instrument Serif', serif; font-size: 48px; line-height: 1.05; color: var(--ink); margin-bottom: 2.5rem; letter-spacing: -0.04em; }
+.header-title em { font-style: italic; color: var(--accent); }
+.header-meta { display: flex; gap: 3rem; }
+.header-meta-item { font-size: 12px; color: var(--muted); }
+.header-meta-item strong { color: var(--ink); font-weight: 500; display: block; margin-bottom: 2px; font-size: 11px; letter-spacing: .04em; text-transform: uppercase; }
+
+/* Compare bar */
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--faint); border-radius: 10px; overflow: hidden; margin-bottom: 3rem; }
+.compare-col { background: var(--white); padding: 1.25rem 1.5rem; }
+.compare-col:first-child { border-right: 1px solid var(--faint); }
+.compare-num { font-size: 10px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; padding: 2px 8px; border-radius: 20px; display: inline-block; margin-bottom: 8px; }
+.cn1 { background: var(--p1-light); color: var(--p1); }
+.cn2 { background: var(--p2-light); color: var(--p2); }
+.compare-title { font-family: 'Instrument Serif', serif; font-size: 18px; margin-bottom: 4px; letter-spacing: -0.03em; }
+.compare-dates { font-size: 12px; color: var(--muted); margin-bottom: 12px; }
+.compare-stats { display: flex; gap: 1.25rem; }
+.cs-item { }
+.cs-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+.cs-val { font-size: 16px; font-weight: 500; color: var(--ink); }
+.cs-val.win { color: var(--p2); }
+
+/* Plan blocks */
+.plan { margin-bottom: 3.5rem; }
+.plan-header { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 1.5rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--faint); }
+.plan-badge { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 500; font-size: 14px; flex-shrink: 0; margin-top: 3px; }
+.pb1 { background: var(--p1); color: white; }
+.pb2 { background: var(--p2); color: white; }
+.plan-title { font-family: 'Instrument Serif', serif; font-size: 26px; line-height: 1.1; margin-bottom: 4px; letter-spacing: -0.03em; }
+.plan-sub { font-size: 12px; color: var(--muted); }
+.plan-saving { display: inline-block; font-size: 11px; font-weight: 500; padding: 2px 8px; background: var(--p2-light); color: var(--p2); border-radius: 20px; margin-top: 4px; }
+
+.metrics-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 1.5rem; }
+.metric { background: var(--white); border: 1px solid var(--faint); border-radius: 8px; padding: 12px 14px; }
+.m-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 3px; }
+.m-val { font-size: 18px; font-weight: 500; color: var(--ink); }
+.m-val.g { color: var(--p2); }
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+.col-label { font-size: 10px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+
+/* Cards */
+.card { background: var(--white); border: 1px solid var(--faint); border-radius: 10px; padding: 1rem 1.125rem; margin-bottom: .625rem; }
+.card:last-child { margin-bottom: 0; }
+.card.featured { border-color: var(--p1); border-width: 1.5px; }
+.card.featured2 { border-color: var(--p2); border-width: 1.5px; }
+.card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 6px; }
+.card-name { font-weight: 500; font-size: 13px; color: var(--ink); }
+.card-sub { font-size: 11px; color: var(--muted); margin-bottom: 7px; }
+.card-price { font-size: 16px; font-weight: 500; color: var(--ink); white-space: nowrap; }
+.card-price-note { font-size: 10px; color: var(--muted); text-align: right; }
+.tags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; }
+.tag { font-size: 10px; padding: 2px 8px; border-radius: 20px; }
+.t-blue { background: var(--p1-light); color: var(--p1); }
+.t-green { background: var(--p2-light); color: var(--p2); }
+.t-gray { background: var(--faint); color: var(--muted); }
+.t-warn { background: #fff3e0; color: #8b5000; }
+.note { font-size: 11px; color: var(--muted); background: var(--bg); border-radius: 6px; padding: 7px 9px; margin-bottom: 8px; line-height: 1.5; }
+.btns { display: flex; flex-wrap: wrap; gap: 6px; }
+a.btn { font-size: 11px; font-weight: 500; padding: 5px 12px; border-radius: 6px; border: 1px solid var(--faint); color: var(--p1); text-decoration: none; background: var(--white); display: inline-block; }
+a.btn:hover { border-color: var(--p1); }
+a.btn.primary { background: var(--ink); color: white; border-color: var(--ink); }
+
+/* Programme */
+.programme { background: var(--white); border: 1px solid var(--faint); border-radius: 10px; overflow: hidden; }
+.day { display: flex; gap: 0; border-bottom: 1px solid var(--faint); }
+.day:last-child { border-bottom: none; }
+.day-date { min-width: 90px; padding: 10px 12px; font-size: 11px; font-weight: 500; color: var(--muted); background: var(--bg); border-right: 1px solid var(--faint); flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; }
+.day-date span { font-size: 9px; font-weight: 400; text-transform: uppercase; letter-spacing: .06em; display: block; margin-bottom: 2px; color: var(--muted); opacity: .7; }
+.day-text { padding: 10px 14px; font-size: 12px; color: var(--ink); line-height: 1.55; }
+.eyebrow { font-size: 10px; font-weight: 500; letter-spacing: .12em; color: var(--muted); text-transform: uppercase; margin-bottom: .75rem; }
+
+/* Next steps */
+.next-steps { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: .5rem; }
+.ns { background: var(--white); border: 1px solid var(--faint); border-radius: 10px; padding: 1.125rem 1.25rem; }
+.ns1 { border-top: 3px solid var(--p1); }
+.ns2 { border-top: 3px solid var(--p2); }
+.ns-title { font-weight: 500; font-size: 13px; margin-bottom: 10px; color: var(--ink); }
+.ns-step { display: flex; gap: 10px; margin-bottom: 7px; font-size: 12px; color: var(--muted); }
+.ns-step:last-child { margin-bottom: 0; }
+.ns-n { width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 500; flex-shrink: 0; margin-top: 1px; }
+.ns1 .ns-n { background: var(--p1-light); color: var(--p1); }
+.ns2 .ns-n { background: var(--p2-light); color: var(--p2); }
+.ns-step span { flex: 1; }
+
+.section-title { font-size: 10px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; margin-top: 0; }
+.rating-badge { font-size: 10px; font-weight: 500; padding: 2px 7px; background: var(--accent-light); color: var(--accent); border-radius: 20px; }
+
+/* Responsive */
+@media (max-width: 640px) {
+  .page { padding: 2rem 1.25rem 4rem; }
+
+  .header-title { font-size: 32px; margin-bottom: 1.75rem; }
+  .header-meta { flex-wrap: wrap; gap: 1.25rem; }
+
+  .compare { grid-template-columns: 1fr; }
+  .compare-col:first-child { border-right: none; border-bottom: 1px solid var(--faint); }
+  .compare-stats { flex-wrap: wrap; gap: .875rem; }
+
+  .metrics-row { grid-template-columns: repeat(2, 1fr); }
+
+  .two-col { grid-template-columns: 1fr; gap: 1.25rem; }
+
+  .plan-header { gap: 12px; }
+  .plan-title { font-size: 22px; }
+
+  .card-top { flex-direction: column; gap: 4px; }
+  .card-price { font-size: 14px; }
+  .card-price-note { text-align: left; }
+
+  .day { flex-direction: column; }
+  .day-date { min-width: unset; border-right: none; border-bottom: 1px solid var(--faint); padding: 8px 14px; flex-direction: row; gap: 6px; align-items: center; }
+  .day-date span { margin-bottom: 0; }
+  .day-text { padding: 10px 14px; }
+
+  .next-steps { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="header-eyebrow">Workation · Ilhas Canárias · 2 pessoas</div>
+    <div class="header-title">Workation <em>maio 2026</em></div>
+    <div class="header-meta">
+      <div class="header-meta-item"><strong>Partida</strong>Lisboa (LIS)</div>
+      <div class="header-meta-item"><strong>Viajantes</strong>2 pessoas</div>
+      <div class="header-meta-item"><strong>Objetivo</strong>Workation + praia + descanso</div>
+      <div class="header-meta-item"><strong>Orçamento</strong>650–1.050 €</div>
+    </div>
+  </div>
+
+  <div class="section-title">Comparação rápida</div>
+  <div class="compare">
+    <div class="compare-col">
+      <div class="compare-num cn1">Plano 1</div>
+      <div class="compare-title">Lanzarote — Arrieta</div>
+      <div class="compare-dates">12–16 maio · 4 noites · escala Madrid</div>
+      <div class="compare-stats">
+        <div class="cs-item"><div class="cs-label">Voo</div><div class="cs-val">~350 €</div></div>
+        <div class="cs-item"><div class="cs-label">Aloj.</div><div class="cs-val">672 €</div></div>
+        <div class="cs-item"><div class="cs-label">Total</div><div class="cs-val">~1.020 €</div></div>
+        <div class="cs-item"><div class="cs-label">Noites</div><div class="cs-val">4</div></div>
+      </div>
+    </div>
+    <div class="compare-col">
+      <div class="compare-num cn2">Plano 2</div>
+      <div class="compare-title">Fuerteventura — El Cotillo</div>
+      <div class="compare-dates">13–18 maio · 5 noites · voo direto TAP</div>
+      <div class="compare-stats">
+        <div class="cs-item"><div class="cs-label">Voo</div><div class="cs-val win">~230 €</div></div>
+        <div class="cs-item"><div class="cs-label">Aloj.</div><div class="cs-val win">300–650 €</div></div>
+        <div class="cs-item"><div class="cs-label">Total</div><div class="cs-val win">~650–850 €</div></div>
+        <div class="cs-item"><div class="cs-label">Noites</div><div class="cs-val win">5</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLANO 1 -->
+  <div class="plan">
+    <div class="plan-header">
+      <div class="plan-badge pb1">1</div>
+      <div>
+        <div class="plan-title">Lanzarote · Ca'Malú, Arrieta</div>
+        <div class="plan-sub">Voo Iberia via Madrid · estúdio frente ao mar · zona tranquila do norte</div>
+      </div>
+    </div>
+
+    <div class="metrics-row">
+      <div class="metric"><div class="m-label">Voo 2 pax i/v</div><div class="m-val">~350 €</div></div>
+      <div class="metric"><div class="m-label">Alojamento</div><div class="m-val">672 €</div></div>
+      <div class="metric"><div class="m-label">Noites</div><div class="m-val">4</div></div>
+      <div class="metric"><div class="m-label">Total estimado</div><div class="m-val">~1.020 €</div></div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="col-label">Voo</div>
+        <div class="card featured">
+          <div class="card-top">
+            <div>
+              <div class="card-name">Iberia — LIS → ACE via Madrid</div>
+              <div class="card-sub">Terça 12 maio (ida) · Sábado 16 maio (regresso)</div>
+            </div>
+            <div>
+              <div class="card-price">~350 €</div>
+              <div class="card-price-note">2 pax i/v</div>
+            </div>
+          </div>
+          <div class="tags">
+            <span class="tag t-blue">Escala ~50 min MAD</span>
+            <span class="tag t-blue">~5h total</span>
+            <span class="tag t-gray">Companhia fiável</span>
+          </div>
+          <div class="btns">
+            <a class="btn primary" href="https://www.google.com/travel/flights/search?tfs=CBwQAhoeEgoyMDI2LTA1LTEyagcIARIDTElTcgcIARIDQUNFGh4SCjIwMjYtMDUtMTZqBwgBEgNBQ0VyBwgBEgNMSVM">Google Flights ↗</a>
+            <a class="btn" href="https://www.kayak.pt/flights/LIS-ACE/2026-05-12/2026-05-16/2adults">KAYAK ↗</a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="col-label">Alojamento — verificado ao vivo</div>
+        <div class="card featured">
+          <div class="card-top">
+            <div>
+              <div class="card-name">Ca'Malú Estúdio no mar</div>
+              <div class="card-sub">Arrieta · Superhost Giulia · 5 anos experiência</div>
+            </div>
+            <div>
+              <div class="card-price">672 €</div>
+              <div class="card-price-note">4 noites</div>
+            </div>
+          </div>
+          <div class="tags">
+            <span class="tag t-green">4,98 · 123 avaliações</span>
+            <span class="tag t-green">Favorito hóspedes</span>
+            <span class="tag t-blue">Frente ao mar</span>
+            <span class="tag t-blue">Workspace exclusivo</span>
+            <span class="tag t-blue">Wi-Fi</span>
+            <span class="tag t-gray">Arrieta · norte tranquilo</span>
+          </div>
+          <div class="note">⚠ Cancelamento gratuito até 7 de maio. Reservar já para garantir o preço com desconto — era 811 €.</div>
+          <div class="btns">
+            <a class="btn primary" href="https://www.airbnb.pt/rooms/1061261621142346128?check_in=2026-05-12&check_out=2026-05-16&adults=2">Reservar no Airbnb ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-label">Programa — 4 dias em Arrieta, Lanzarote</div>
+    <div class="programme">
+      <div class="day">
+        <div class="day-date"><span>Dia 1</span>Ter 12 mai</div>
+        <div class="day-text">Voo Lisboa → Arrecife via Madrid. Check-in Ca'Malú ao fim da tarde. Jantar no porto de Arrieta — peixe fresco local.</div>
+      </div>
+      <div class="day">
+        <div class="day-date"><span>Dia 2</span>Qua 13 mai</div>
+        <div class="day-text">Trabalho de manhã no terraço com vista mar. Tarde: Jameos del Agua + Cueva de los Verdes (5 min de carro). Pôr do sol no Mirador del Río.</div>
+      </div>
+      <div class="day">
+        <div class="day-date"><span>Dia 3</span>Qui 14 mai</div>
+        <div class="day-text">Trabalho de manhã. Ferry para La Graciosa (Órzola, 10 min) — praias desertas e snorkel em águas cristalinas.</div>
+      </div>
+      <div class="day">
+        <div class="day-date"><span>Dia 4</span>Sex 15 mai</div>
+        <div class="day-text">Manhã livre. Timanfaya National Park + vinhas de La Geria ao fim da tarde. Jantar de despedida em Arrieta.</div>
+      </div>
+      <div class="day">
+        <div class="day-date"><span>Dia 5</span>Sáb 16 mai</div>
+        <div class="day-text">Check-out 11h. Transfer ao aeroporto (30 min). Voo de regresso a Lisboa.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLANO 2 -->
+  <div class="plan">
+    <div class="plan-header">
+      <div class="plan-badge pb2">2</div>
+      <div>
+        <div class="plan-title">Fuerteventura · El Cotillo</div>
+        <div class="plan-sub">Voo direto TAP · aldeia piscatória · praias de areia branca · +1 noite a menos custo</div>
+        <div class="plan-saving">Poupa ~200–400 € vs Plano 1 e ganha mais 1 noite</div>
+      </div>
+    </div>
+
+    <div class="metrics-row">
+      <div class="metric"><div class="m-label">Voo 2 pax i/v</div><div class="m-val g">~230 €</div></div>
+      <div class="metric"><div class="m-label">Alojamento</div><div class="m-val">250–650 €</div></div>
+      <div class="metric"><div class="m-label">Noites</div><div class="m-val g">5</div></div>
+      <div class="metric"><div class="m-label">Total estimado</div><div class="m-val g">~650–850 €</div></div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="col-label">Voo</div>
+        <div class="card featured2">
+          <div class="card-top">
+            <div>
+              <div class="card-name">TAP — LIS → FUE direto</div>
+              <div class="card-sub">Quarta 13 maio (ida) · Segunda 18 maio (regresso)</div>
+            </div>
+            <div>
+              <div class="card-price">~230 €</div>
+              <div class="card-price-note">2 pax i/v</div>
+            </div>
+          </div>
+          <div class="tags">
+            <span class="tag t-green">Sem escala</span>
+            <span class="tag t-green">~3h30m</span>
+            <span class="tag t-blue">Qua + Seg = tarifas mais baixas</span>
+            <span class="tag t-gray">Maio = 2.ª época mais barata</span>
+          </div>
+          <div class="btns">
+            <a class="btn primary" href="https://www.google.com/travel/flights/search?tfs=CBwQAhoeEgoyMDI2LTA1LTEzagcIARIDTElTcgcIARIDRlVFGh4SCjIwMjYtMDUtMThqBwgBEgNGVUVyBwgBEgNMSVM">Google Flights ↗</a>
+            <a class="btn" href="https://www.tap.pt">TAP.pt ↗</a>
+          </div>
+          <div class="note" style="margin-top:8px;margin-bottom:0">Carro necessário — El Cotillo fica a 40 min do aeroporto. Reservar junto com o voo (~50–80 € / 5 dias).</div>
+        </div>
+      </div>
+      <div>
+        <div class="col-label">4 opções de alojamento — verificadas</div>
+
+        <div class="card featured2">
+          <div class="card-top">
+            <div>
+              <div class="card-name">CALMA II ⭑ recomendado</div>
+              <div class="card-sub">Superhost Calma · 10 anos · Verificado ao vivo</div>
+            </div>
+            <div>
+              <div class="card-price">~350–450 €</div>
+              <div class="card-price-note">5 noites</div>
+            </div>
+          </div>
+          <div class="tags">
+            <span class="tag t-green">4,91 · 77 reviews</span>
+            <span class="tag t-green">Workation explícito</span>
+            <span class="tag t-blue">Frente ao mar</span>
+            <span class="tag t-blue">Wi-Fi</span>
+          </div>
+          <div class="btns">
+            <a class="btn primary" href="https://www.airbnb.pt/rooms/45825578?check_in=2026-05-13&check_out=2026-05-18&adults=2">Ver no Airbnb ↗</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div>
+              <div class="card-name">Ola Cotillo!</div>
+              <div class="card-sub">Superhost Raquel · 5 anos · Verificado ao vivo</div>
+            </div>
+            <div>
+              <div class="card-price">~300–400 €</div>
+              <div class="card-price-note">5 noites</div>
+            </div>
+          </div>
+          <div class="tags">
+            <span class="tag t-green">4,91 · 101 reviews</span>
+            <span class="tag t-blue">Frente ao mar</span>
+            <span class="tag t-blue">Solário</span>
+            <span class="tag t-blue">Piscina</span>
+            <span class="tag t-warn">Obras perto — confirmar</span>
+          </div>
+          <div class="btns">
+            <a class="btn" href="https://www.airbnb.pt/rooms/49775535?check_in=2026-05-13&check_out=2026-05-18&adults=2">Ver no Airbnb ↗</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div>
+              <div class="card-name">El Cotillo On The Beach — Playa La Concha</div>
+              <div class="card-sub">Stefania · 3 anos · Verificado ao vivo</div>
+            </div>
+            <div>
+              <div class="card-price">~500–650 €</div>
+              <div class="card-price-note">5 noites</div>
+            </div>
+          </div>
+          <div class="tags">
+            <span class="tag t-green">5,0 · 5 reviews</span>
+            <span class="tag t-blue">Vista Playa La Concha</span>
+            <span class="tag t-blue">Piscina</span>
+            <span class="tag t-gray">Novo — poucos reviews</span>
+          </div>
+          <div class="btns">
+            <a class="btn" href="https://www.airbnb.pt/rooms/928880046187803794?check_in=2026-05-13&check_out=2026-05-18&adults=2">Ver no Airbnb ↗</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div>
+              <div class="card-name">The Green Oasis — mais económico</div>
+              <div class="card-sub">Matevz · 7 anos · Verificado ao vivo</div>
+            </div>
+            <div>
+              <div class="card-price">~250–350 €</div>
+              <div class="card-price-note">5 noites</div>
+            </div>
+          </div>
+          <div class="tags">
+            <span class="tag t-gray">4,71 · 35 reviews</span>
+            <span class="tag t-blue">Workspace dedicado</span>
+            <span class="tag t-blue">Piscina rés-do-chão</span>
+          </div>
+          <div class="btns">
+            <a class="btn" href="https://www.airbnb.pt/rooms/43541573?check_in=2026-05-13&check_out=2026-05-18&adults=2">Ver no Airbnb ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-label">Programa — 5 dias em El Cotillo, Fuerteventura</div>
+    <div class="programme">
+      <div class="day">
+        <div class="day-date"><span>Dia 1</span>Qua 13 mai</div>
+        <div class="day-text">Voo direto Lisboa → Fuerteventura (3h30m). Levanta carro no aeroporto. Check-in El Cotillo (40 min). Jantar tranquilo no porto da aldeia piscatória.</div>
+      </div>
+      <div class="day">
+        <div class="day-date"><span>Dia 2</span>Qui 14 mai</div>
+        <div class="day-text">Trabalho de manhã. Tarde: Playa de La Concha — lagoa turquesa protegida por recife natural, águas calmas perfeitas para nadar.</div>
+      </div>
+      <div class="day">
+        <div class="day-date"><span>Dia 3</span>Sex 15 mai</div>
+        <div class="day-text">Trabalho de manhã. Dunas de Corralejo (30 min de carro) + ferry para Ilha de Lobos — snorkel e praias desertas.</div>
+      </div>
+      <div class="day">
+        <div class="day-date"><span>Dia 4</span>Sáb 16 mai</div>
+        <div class="day-text">Dia livre. Playa Sotavento no sul (1h) — considerada a praia de areia branca mais bonita das Canárias.</div>
+      </div>
+      <div class="day">
+        <div class="day-date"><span>Dia 5</span>Dom 17 mai</div>
+        <div class="day-text">Manhã tranquila em El Cotillo. Betancuria (aldeia histórica medieval) ou exploração pelas praias selvagens do noroeste.</div>
+      </div>
+      <div class="day">
+        <div class="day-date"><span>Dia 6</span>Seg 18 mai</div>
+        <div class="day-text">Check-out. Devolução do carro no aeroporto. Voo direto de regresso a Lisboa.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRÓXIMOS PASSOS -->
+  <div class="section-title">Próximos passos</div>
+  <div class="next-steps">
+    <div class="ns ns1">
+      <div class="ns-title">Se escolheres Lanzarote</div>
+      <div class="ns-step"><div class="ns-n">1</div><span>Reservar Ca'Malú hoje — cancelamento gratuito até 7 maio</span></div>
+      <div class="ns-step"><div class="ns-n">2</div><span>Pesquisar voo Iberia 12→16 maio no Google Flights</span></div>
+      <div class="ns-step"><div class="ns-n">3</div><span>Timanfaya — reservar em reservasparquesnacionales.es</span></div>
+      <div class="ns-step"><div class="ns-n">4</div><span>Ferry La Graciosa — Líneas Romero, Órzola</span></div>
+    </div>
+    <div class="ns ns2">
+      <div class="ns-title">Se escolheres Fuerteventura</div>
+      <div class="ns-step"><div class="ns-n">1</div><span>Confirmar voo TAP direto 13→18 maio (Google Flights)</span></div>
+      <div class="ns-step"><div class="ns-n">2</div><span>Reservar CALMA II no Airbnb para 13–18 maio</span></div>
+      <div class="ns-step"><div class="ns-n">3</div><span>Reservar carro no aeroporto (~50–80 €)</span></div>
+      <div class="ns-step"><div class="ns-n">4</div><span>Ferry Ilha de Lobos — limite diário de visitantes</span></div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
